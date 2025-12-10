@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Đăng nhập Admin</title>
+<style>
+body {font-family: Arial; background: url('image.jpg') no-repeat center/cover fixed; display: flex; justify-content: center; align-items: center; height: 100vh; color: #000;}
+form {background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+input {width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;}
+button {width: 100%; padding: 10px; background: #003366; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px 0;}
+</style>
+</head>
+<body>
+<form onsubmit="event.preventDefault(); login();">
+  <h2>Đăng nhập Quản lý</h2>
+  <input type="text" id="username" placeholder="Username" required />
+  <input type="password" id="password" placeholder="Password" required />
+  <button type="submit">Đăng nhập</button>
+  <button type="button" onclick="window.location.href='index.html'">Quay về</button>
+</form>
+<script>
+function login() {
+  const user = document.getElementById('username').value;
+  const pass = document.getElementById('password').value;
+  if (user === 'thanhtung' && pass === 'thanhtung2025') {
+    localStorage.setItem('adminLoggedIn', true);
+    window.location.href = 'quanly.html';
+  } else {
+    alert('Sai thông tin đăng nhập!');
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trang Thông Tin và Đăng Ký Thăm Quân Nhân</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('image.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #000;
+}
+header {
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  color: #000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+header h1 {font-size:1.8rem; margin-bottom: 10px;}
+.login-btn, .register-btn {
+  background: #003366;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin: 5px;
+}
+.login-btn:hover, .register-btn:hover {background: #0055aa;}
+section {
+  max-width: 900px;
+  margin:1200px auto 30px;
+  padding: 10px;
+}
+.card {
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  margin: 20px auto;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  color: #000;
+  max-width: 95%;
+}
+.card:hover {transform: translateY(-5px);}
+h2 {color: #000; margin-bottom: 15px;}
+p, ul {line-height:1.6; color: #000;}
+ul li {margin-bottom:8px;}
+iframe {border-radius: 12px; width: 100%; height: 315px; aspect-ratio:16/9;}
+
+/* Responsive cho điện thoại */
+@media (max-width:600px){
+  header h1 {font-size:1.4rem;}
+  .card {padding:15px; margin:15px auto; max-width: 98%;}
+  iframe {height:200px;}
+  section {margin:250px auto 30px;}
+}
+
+/* Form đăng ký */
+.container {
+  max-width: 600px;
+  margin: 720px auto 50px;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  color: #000;
+  display: none; /* Ban đầu ẩn */
+}
+label {display:block; font-weight:bold; margin-top:15px; color:#000;}
+input, select {
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.3);
+  color: #000;
+}
+input::placeholder {color: #333;}
+button[type="submit"] {
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  border:none;
+  border-radius:10px;
+  background:#003366;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+  transition: background 0.3s ease;
+}
+button[type="submit"]:hover {background:#0055aa;}
+#status {text-align:center; margin-top:15px; font-weight:bold; color:#000;}
+
+/* Nút quay lại - Nổi bật và hiện đại */
+#backBtn {
+  background: linear-gradient(135deg, #FF6B6B, #FF8E53); /* gradient nổi bật */
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+#backBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  background: linear-gradient(135deg, #FF8E53, #FF6B6B);
+}
+
+#backBtn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+@media (max-width:600px){
+  .container {padding:20px; margin:120px 10px;}
+  input, select {padding:10px;}
+  button {padding:12px; font-size:14px;}
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Trang thông tin tuyên truyền Trung Đoàn 6, BCH QS Thành phố Huế</h1>
+<button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập quản lý</button>
+<button class="register-btn" id="showFormBtn">Đăng ký vào thăm</button>
+</header>
+
+<section id="infoSection">
+  <div class="card">
+    <h2>Giới thiệu</h2>
+    <p>Trung đoàn 6, thuộc Bộ Chỉ huy Quân sự tỉnh Thừa Thiên Huế, có tên truyền thống là “Đoàn Phú Xuân anh hùng”, được thành lập năm 1965. Trong kháng chiến chống Mỹ, đơn vị tham gia nhiều trận đánh lớn, đặc biệt là Chiến dịch Mậu Thân 1968 tại Huế. Sau giải phóng, Trung đoàn 6 tham gia huấn luyện, sẵn sàng chiến đấu, giúp dân xây dựng nông thôn mới và các hoạt động dân sinh. Đơn vị nhiều lần được tặng Huân chương Quân công và danh hiệu “Đơn vị Quyết thắng”, là biểu tượng tinh thần dũng cảm, kiên cường và phục vụ đất nước.</p>
+  </div>
+
+  <div class="card">
+    <h2>Quy định thăm gặp</h2>
+    <ul>
+      <li>Mang CCCD/định danh hợp lệ.</li>
+      <li>Tuân thủ hướng dẫn của cán bộ trực.</li>
+      <li>Không chụp ảnh tại khu vực cấm.</li>
+    </ul>
+  </div>
+
+ <!-- Card Ảnh Đơn Vị -->
+<div class="card" id="anh">
+  <h2>Ảnh Đơn Vị</h2>
+  <div class="image-row">
+    <div class="image-item">
+      <img src="anh1.jpg" alt="Ảnh 1">
+      <p>Lao động giúp dân</p>
+    </div>
+    <div class="image-item">
+      <img src="anh2.jpg" alt="Ảnh 2">
+      <p>Kiểm tra đánh thuốc nổ</p>
+    </div>
+    <div class="image-item">
+      <img src="anh3.jpg" alt="Ảnh 3">
+      <p>Đồng hành cùng chiến sĩ</p>
+    </div>
+    <div class="image-item">
+      <img src="anh4.jpg" alt="Ảnh 4">
+      <p>Mô hình bát nước thao trường</p>
+    </div>
+    <div class="image-item">
+      <img src="anh5.jpg" alt="Ảnh 5">
+      <p>Công tác dân vận</p>
+    </div>
+    <div class="image-item">
+      <img src="anh6.jpg" alt="Ảnh 6">
+      <p>Lễ tuyên thệ CSM</p>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Grid ảnh */
+.image-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.image-item {
+  text-align: center;
+}
+
+.image-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-item img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.image-item p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #000;
+  line-height: 1.4;
+}
+
+/* Responsive điện thoại */
+@media (max-width:600px){
+  .image-item img {
+    height: 120px;
+  }
+  .image-item p {
+    font-size: 0.85rem;
+  }
+}
+</style>
+
+    </div>
+  </div>
+
+
+</section>
+
+<div id="registration" class="container">
+  <h2>Đăng ký vào thăm quân nhân</h2>
+  <button type="button" id="backBtn">← Quay lại</button>
+  <form id="visitForm">
+    <label>Họ tên khách:</label>
+    <input type="text" id="hoten" placeholder="Nhập họ tên" required />
+    <label>Số CCCD:</label>
+    <input type="text" id="cccd" placeholder="Nhập CCCD" required />
+    <label>Mối quan hệ:</label>
+    <input type="text" id="quanhe" placeholder="Nhập quan hệ" required />
+    <label>Tên quân nhân muốn thăm:</label>
+    <input type="text" id="quannhan" placeholder="Nhập tên quân nhân" required />
+    <label>Số điện thoại:</label>
+    <input type="text" id="sdt" placeholder="Nhập số điện thoại" required />
+    <label>Tỉnh/Thành phố:</label>
+    <select id="tinhthanh" required>
+      <option value="">Chọn tỉnh/thành</option>
+      <option value="Hà Nội">Hà Nội</option>
+      <option value="TP. Hồ Chí Minh">TP. Hồ Chí Minh</option>
+      <option value="Hải Phòng">Hải Phòng</option>
+      <option value="Đà Nẵng">Đà Nẵng</option>
+      <option value="Cần Thơ">Cần Thơ</option>
+    </select>
+     <label>Đơn vị:</label>
+
+    <input type="text" id="donvi" placeholder="Đơn vị" required />
+
+    <button type="submit">Gửi đăng ký</button>
+  </form>
+  <p id="status"></p>
+</div>
+
+<script>
+// Khi nhấn "Đăng ký vào thăm", ẩn section info, hiển thị form
+document.getElementById("showFormBtn").addEventListener("click", function() {
+  document.getElementById("infoSection").style.display = "none";
+  const form = document.getElementById("registration");
+  form.style.display = "block";
+  form.scrollIntoView({behavior: "smooth"});
+});
+
+// Nút quay lại
+document.getElementById("backBtn").addEventListener("click", function() {
+  document.getElementById("registration").style.display = "none"; // ẩn form
+  document.getElementById("infoSection").style.display = "block"; // hiện section info
+  document.getElementById("infoSection").scrollIntoView({behavior: "smooth"});
+});
+
+// Gửi form
+const API_URL = "https://script.google.com/macros/s/AKfycbyeMZ2geqHMkxTEV_ujWnd_luLEaGgfHzPAe5c3uSoMVA00TVMZyUrj6iuAs8xHDfps/exec";
+document.getElementById("visitForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const data = {
+    hoten: document.getElementById("hoten").value,
+    cccd: document.getElementById("cccd").value,
+    quanhe: document.getElementById("quanhe").value,
+    quannhan: document.getElementById("quannhan").value,
+    sdt: document.getElementById("sdt").value,
+    tinhthanhpho: document.getElementById("tinhthanh").value,
+    donvi: document.getElementById("donvi").value,
+    trangthai: "Chờ duyệt"
+  };
+
+  await fetch(API_URL, {method:"POST", body: JSON.stringify(data)});
+
+  const statusEl = document.getElementById("status"); // Khai báo biến
+  statusEl.innerHTML = "Đăng ký thành công!";
+
+  // Ẩn thông báo sau 3 giây
+  setTimeout(() => {
+    statusEl.innerHTML = "";
+  }, 3000);
+
+  this.reset();
+});
+
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Đăng nhập Admin</title>
+<style>
+body {font-family: Arial; background: url('image.jpg') no-repeat center/cover fixed; display: flex; justify-content: center; align-items: center; height: 100vh; color: #000;}
+form {background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+input {width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc;}
+button {width: 100%; padding: 10px; background: #003366; color: white; border: none; border-radius: 5px; cursor: pointer; margin: 5px 0;}
+</style>
+</head>
+<body>
+<form onsubmit="event.preventDefault(); login();">
+</script>
+</body>
+</html>
